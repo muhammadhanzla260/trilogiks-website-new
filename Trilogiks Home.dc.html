@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Axiforma';src:url('assets/fonts/Axiforma-Regular.ttf') format('truetype');font-weight:400;font-display:swap;}
+@font-face{font-family:'Axiforma';src:url('assets/fonts/Axiforma-Medium.ttf') format('truetype');font-weight:500;font-display:swap;}
+@font-face{font-family:'Axiforma';src:url('assets/fonts/Axiforma-SemiBold.ttf') format('truetype');font-weight:600;font-display:swap;}
+@font-face{font-family:'Axiforma';src:url('assets/fonts/Axiforma-Bold.ttf') format('truetype');font-weight:700;font-display:swap;}
+:root{
+  --ks-accent:#2a8fff;--ks-accent-2:#7c5cff;
+  --ks-grad:linear-gradient(135deg,#0a78ff,#0a52e0);
+  --ks-grad-text:linear-gradient(100deg,#4da3ff,#9b7cff);
+  --ks-glow-1:rgba(10,108,255,.55);--ks-glow-2:rgba(124,92,255,.4);
+  --ks-orb-blur:36px;--ks-orb-opacity:.85;--ks-aurora-op:1;--ks-anim:running;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:#ffffff;font-family:'Axiforma',-apple-system,sans-serif;color:#0a1733;-webkit-font-smoothing:antialiased;}
+::selection{background:var(--ks-accent,#0a6bff);color:#fff;}
+@keyframes ksFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes ksFloat2{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+@keyframes ksBar{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes ksMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ksDot{0%{box-shadow:0 0 0 0 rgba(34,197,94,.45)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@keyframes ksGradFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes ksAurora{0%{transform:translate(0,0) rotate(0deg) scale(1)}33%{transform:translate(4%,-3%) rotate(5deg) scale(1.06)}66%{transform:translate(-3%,3%) rotate(-5deg) scale(.96)}100%{transform:translate(0,0) rotate(0deg) scale(1)}}
+@keyframes ksDrift{0%{transform:translate(0,0)}50%{transform:translate(26px,-22px)}100%{transform:translate(0,0)}}
+@keyframes ksSpinGrad{to{transform:rotate(360deg)}}
+@keyframes ksSheen{0%{transform:translateX(-160%) skewX(-18deg)}100%{transform:translateX(320%) skewX(-18deg)}}
+@keyframes ksPulseLink{0%,100%{opacity:.5}50%{opacity:1}}
+.ks-anim-grad{background-size:220% 220%;animation:ksGradFlow 7s ease infinite;animation-play-state:var(--ks-anim,running);}
+.ks-text-grad{background:var(--ks-grad-text,linear-gradient(100deg,#4da3ff,#9b7cff));background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:ksGradFlow 8s linear infinite;animation-play-state:var(--ks-anim,running);}
+.ks-orb{filter:blur(var(--ks-orb-blur,36px));opacity:var(--ks-orb-opacity,.85);animation:ksDrift 18s ease-in-out infinite;animation-play-state:var(--ks-anim,running);}
+.ks-aurora{position:absolute;inset:-25%;pointer-events:none;filter:blur(46px);mix-blend-mode:screen;opacity:var(--ks-aurora-op,1);animation:ksAurora 22s ease-in-out infinite;animation-play-state:var(--ks-anim,running);}
+.ks-spot::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(460px circle at var(--mx,50%) var(--my,50%),var(--ks-glow-1,rgba(10,108,255,.16)),transparent 60%);opacity:0;transition:opacity .4s ease;pointer-events:none;z-index:0;}
+.ks-spot:hover::before{opacity:.7;}
+.ks-sheen::after{content:"";position:absolute;top:0;left:-10%;width:38%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:translateX(-160%) skewX(-18deg);pointer-events:none;z-index:1;}
+.ks-sheen:hover::after{animation:ksSheen .85s ease;}
+a[data-nav]:hover>span{transform:scaleX(1)!important;}
+.ks-burger{display:none;}
+@media(max-width:980px){
+  .ks-r-nav{display:none!important;}
+  .ks-r-cta{display:none!important;}
+  .ks-burger{display:inline-flex!important;}
+  .ks-r-hero{grid-template-columns:1fr!important;gap:42px!important;}
+  .ks-r-2col{grid-template-columns:1fr!important;}
+  .ks-r-svc{grid-template-columns:1fr!important;}
+  .ks-r-probvis{grid-template-columns:1fr!important;gap:14px!important;}
+  .ks-r-3col{grid-template-columns:repeat(2,1fr)!important;}
+  .ks-r-4col{grid-template-columns:repeat(2,1fr)!important;}
+  .ks-r-stats{grid-template-columns:repeat(2,1fr)!important;}
+  .ks-r-pricing{grid-template-columns:1fr!important;max-width:480px;margin-left:auto;margin-right:auto;}
+  .ks-r-footer{grid-template-columns:repeat(2,1fr)!important;}
+}
+@media(max-width:640px){
+  .ks-r-3col{grid-template-columns:1fr!important;}
+  .ks-r-2to1{grid-template-columns:1fr!important;}
+  .ks-r-footer{grid-template-columns:1fr!important;}
+  .ks-r-herosec{padding-top:122px!important;padding-bottom:72px!important;}
+  .ks-r-sec{padding-top:72px!important;padding-bottom:72px!important;}
+  .ks-r-ctapad{padding:46px 26px!important;}
+}
+</style>
+</helmet>
+
+<div ref="{{ rootRef }}" style="overflow-x:hidden;background:#ffffff;">
+
+<div ref="{{ progressRef }}" style="position:fixed;top:0;left:0;height:3px;width:0;z-index:70;background:var(--ks-grad,linear-gradient(90deg,#0a78ff,#7c5cff));box-shadow:0 0 12px var(--ks-glow-1,rgba(10,108,255,.7));transition:width .12s linear;"></div>
+<button ref="{{ topRef }}" onClick="{{ scrollTop }}" aria-label="Back to top" style="position:fixed;right:26px;bottom:26px;z-index:65;width:48px;height:48px;border:none;border-radius:50%;cursor:pointer;background:var(--ks-grad,linear-gradient(135deg,#0a78ff,#0a52e0));color:#fff;box-shadow:0 14px 30px -10px var(--ks-glow-1,rgba(10,108,255,.7));opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:opacity .3s ease,transform .3s ease,box-shadow .3s ease;display:flex;align-items:center;justify-content:center;" style-hover="box-shadow:0 18px 36px -8px var(--ks-glow-1,rgba(10,108,255,.85));">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 19V5M6 11l6-6 6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<!-- ============ HEADER ============ -->
+<header ref="{{ headerRef }}" style="position:fixed;top:0;left:0;right:0;z-index:60;transition:background .35s ease,box-shadow .35s ease,backdrop-filter .35s ease;padding:18px 0;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+    <a href="#top" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+      <span class="ks-anim-grad" style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;background:var(--ks-grad,linear-gradient(150deg,#0a78ff,#0a52e0));box-shadow:0 8px 20px -6px var(--ks-glow-1,rgba(10,108,255,.6));">
+        <svg width="19" height="19" viewBox="0 0 32 32" fill="none"><path d="M16 5 L27 25 L5 25 Z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><circle cx="16" cy="5" r="2.8" fill="#fff"/><circle cx="27" cy="25" r="2.8" fill="#fff"/><circle cx="5" cy="25" r="2.8" fill="#fff"/></svg>
+      </span>
+      <span ref="{{ brandRef }}" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;letter-spacing:.01em;color:#ffffff;transition:color .35s ease;">trilogiks</span>
+    </a>
+    <nav ref="{{ navRef }}" class="ks-r-nav" style="display:flex;align-items:center;gap:30px;font-size:14.5px;font-weight:500;color:rgba(255,255,255,.85);transition:color .35s ease;">
+      <a href="#services" data-nav="services" style="position:relative;color:inherit;text-decoration:none;opacity:.82;transition:opacity .25s ease;" style-hover="opacity:1;">Services<span style="position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:var(--ks-grad,linear-gradient(90deg,#0a78ff,#7c5cff));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;"></span></a>
+      <a href="#industries" data-nav="industries" style="position:relative;color:inherit;text-decoration:none;opacity:.82;transition:opacity .25s ease;" style-hover="opacity:1;">Industries<span style="position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:var(--ks-grad,linear-gradient(90deg,#0a78ff,#7c5cff));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;"></span></a>
+      <a href="#work" data-nav="work" style="position:relative;color:inherit;text-decoration:none;opacity:.82;transition:opacity .25s ease;" style-hover="opacity:1;">Case Studies<span style="position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:var(--ks-grad,linear-gradient(90deg,#0a78ff,#7c5cff));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;"></span></a>
+      <a href="#pricing" data-nav="pricing" style="position:relative;color:inherit;text-decoration:none;opacity:.82;transition:opacity .25s ease;" style-hover="opacity:1;">Pricing<span style="position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:var(--ks-grad,linear-gradient(90deg,#0a78ff,#7c5cff));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;"></span></a>
+      <a href="#about" data-nav="about" style="position:relative;color:inherit;text-decoration:none;opacity:.82;transition:opacity .25s ease;" style-hover="opacity:1;">About<span style="position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:var(--ks-grad,linear-gradient(90deg,#0a78ff,#7c5cff));transform:scaleX(0);transform-origin:left;transition:transform .3s ease;"></span></a>
+    </nav>
+    <a href="#contact" class="ks-anim-grad ks-sheen ks-r-cta" style="position:relative;display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:999px;background:var(--ks-grad,linear-gradient(135deg,#0a78ff,#0a52e0));color:#fff;font-weight:600;font-size:14px;text-decoration:none;box-shadow:0 12px 26px -10px var(--ks-glow-1,rgba(10,108,255,.65));transition:transform .25s ease,box-shadow .25s ease;overflow:hidden;" style-hover="transform:translateY(-2px);box-shadow:0 16px 30px -8px var(--ks-glow-1,rgba(10,108,255,.75));">
+      Schedule a Free Consultation
+    </a>
+    <button ref="{{ burgerRef }}" onClick="{{ toggleMenu }}" aria-label="Open menu" class="ks-burger" style="width:44px;height:44px;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.18);border-radius:11px;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;backdrop-filter:blur(8px);transition:color .35s ease,background .35s ease;">
+      <svg ref="{{ burgerIconRef }}" width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+
+<div ref="{{ menuRef }}" style="position:fixed;top:72px;left:12px;right:12px;z-index:59;background:#fff;border:1px solid #e7edf6;border-radius:18px;box-shadow:0 30px 60px -22px rgba(12,40,90,.42);padding:14px;display:flex;flex-direction:column;gap:4px;opacity:{{ menuO }};transform:{{ menuT }};pointer-events:{{ menuPE }};transition:opacity .3s ease,transform .3s ease;">
+  <sc-for list="{{ menuLinks }}" as="ml" hint-placeholder-count="5">
+    <a href="{{ ml.href }}" onClick="{{ closeMenu }}" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;font-size:15.5px;font-weight:600;color:#0a1733;text-decoration:none;transition:background .2s ease;" style-hover="background:#f1f5fb;">
+      {{ ml.label }}
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="#b6c2d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </sc-for>
+  <a href="#contact" onClick="{{ closeMenu }}" class="ks-anim-grad" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;margin-top:8px;padding:15px;border-radius:12px;background:var(--ks-grad,linear-gradient(135deg,#0a78ff,#0a52e0));color:#fff;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 14px 28px -12px var(--ks-glow-1,rgba(10,108,255,.6));">
+    Schedule a Free Consultation
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section id="top" ref="{{ heroSecRef }}" class="ks-r-herosec" style="position:relative;background:linear-gradient(165deg,#071233 0%,#0a1a47 52%,#060f29 100%);color:#fff;padding:158px 0 96px;overflow:hidden;">
+  <div class="ks-aurora" style="background:radial-gradient(38% 40% at 22% 28%,var(--ks-glow-1,rgba(10,108,255,.55)),transparent 70%),radial-gradient(34% 44% at 80% 22%,var(--ks-glow-2,rgba(124,92,255,.4)),transparent 70%),radial-gradient(44% 40% at 60% 82%,var(--ks-accent,rgba(64,180,255,.4)),transparent 72%);"></div>
+  <div class="ks-orb" style="position:absolute;top:-160px;right:-120px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,var(--ks-glow-1,rgba(10,108,255,.55)),transparent 62%);"></div>
+  <div class="ks-orb" style="position:absolute;bottom:-220px;left:-160px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,var(--ks-glow-2,rgba(124,92,255,.34)),transparent 62%);animation-duration:23s;"></div>
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000,transparent 78%);-webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,#000,transparent 78%);"></div>
+
+  <div class="ks-r-hero" style="position:relative;max-width:1260px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.08fr .92fr;gap:54px;align-items:center;">
+    <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <div style="display:inline-flex;align-items:center;gap:9px;padding:7px 15px 7px 11px;border-radius:999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);font-size:13px;font-weight:500;color:#cfe0ff;margin-bottom:26px;">
+        <span style="display:inline-flex;width:8px;height:8px;border-radius:50%;background:#36d36b;animation:ksDot 2.4s infinite;"></span>
+        Certified Odoo experts · US-hours support
+      </div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(38px,5.1vw,66px);line-height:1.05;letter-spacing:-.02em;margin:0 0 22px;">
+        Run your business<br>smarter — <span class="ks-text-grad">Odoo, built<br>around you.</span>
+      </h1>
+      <p style="font-size:18px;line-height:1.62;color:rgba(255,255,255,.74);max-width:540px;margin:0 0 32px;">
+        Trilogiks helps US businesses replace disconnected tools, spreadsheets and manual work with one fully integrated Odoo ERP — from implementation and customization to automation and long-term support.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px;">
+        <a href="#contact" class="ks-anim-grad ks-sheen ks-magnetic" style="position:relative;display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:999px;background:var(--ks-grad,linear-gradient(135deg,#0a78ff,#0a52e0));color:#fff;font-weight:600;font-size:15px;text-decoration:none;box-shadow:0 16px 34px -10px var(--ks-glow-1,rgba(10,108,255,.7));transition:transform .25s ease;overflow:hidden;" style-hover="transform:translateY(-2px);">
+          Schedule a Free Consultation
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#services" style="display:inline-flex;align-items:center;gap:10px;padding:16px 26px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.18);color:#fff;font-weight:600;font-size:15px;text-decoration:none;backdrop-filter:blur(8px);transition:background .25s ease;" style-hover="background:rgba(255,255,255,.12);">
+          Explore Our Services
+        </a>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px 22px;flex-wrap:wrap;">
+        <sc-for list="{{ trustBar }}" as="tb" hint-placeholder-count="0">
+          <span style="display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:rgba(255,255,255,.7);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#4da3ff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            {{ tb }}
+          </span>
+        </sc-for>
+      </div>
+    </div>
+
+    <div ref="{{ tiltRef }}" data-reveal data-reveal-delay="160" style="position:relative;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .25s ease;will-change:transform;">
+      <div style="position:absolute;inset:-2px;border-radius:24px;background:conic-gradient(from 0deg,var(--ks-accent,#0a6bff),var(--ks-accent-2,#7c5cff),var(--ks-accent,#0a6bff));filter:blur(14px);opacity:.5;animation:ksSpinGrad 12s linear infinite;animation-play-state:var(--ks-anim,running);"></div>
+      <div style="position:relative;border-radius:22px;background:linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);box-shadow:0 40px 80px -30px rgba(0,0,0,.6);padding:20px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+          <div style="display:flex;gap:7px;">
+            <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#febc2e;"></span>
+            <span style="width:11px;height:11px;border-radius:50%;background:#28c840;"></span>
+          </div>
+          <span style="font-size:12px;color:rgba(255,255,255,.55);font-family:'Space Grotesk',monospace;">trilogiks · odoo erp</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
+          <sc-for list="{{ mockTiles }}" as="m" hint-placeholder-count="3">
+            <div style="border-radius:13px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:13px;">
+              <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:6px;">{{ m.label }}</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;color:#fff;">{{ m.value }}</div>
+              <div style="font-size:11px;font-weight:600;color:#4ade80;margin-top:3px;">{{ m.delta }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="border-radius:13px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);padding:16px 16px 14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+            <span style="font-size:12.5px;color:rgba(255,255,255,.7);font-weight:600;">Orders processed · last 7 days</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.45);">+18.4%</span>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:9px;height:92px;">
+            <sc-for list="{{ mockBars }}" as="b" hint-placeholder-count="7">
+              <div style="flex:1;height:{{ b.h }};transform-origin:bottom;border-radius:6px 6px 2px 2px;background:var(--ks-grad,linear-gradient(180deg,#5ea2ff,#0a6bff));animation:ksBar 1.1s cubic-bezier(.2,.8,.2,1) both;animation-delay:{{ b.delay }};"></div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:9px;margin-top:14px;padding:11px 14px;border-radius:11px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.22);">
+          <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;animation:ksDot 2s infinite;"></span>
+          <span style="font-size:12.5px;color:#bbf7d0;font-weight:500;">Odoo · all modules synced</span>
+        </div>
+      </div>
+      <div style="position:absolute;top:-26px;left:-30px;display:flex;align-items:center;gap:9px;padding:10px 15px;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 18px 40px -14px rgba(0,0,0,.5);animation:ksFloat2 6s ease-in-out infinite;">
+        <span style="width:9px;height:9px;border-radius:50%;background:var(--ks-accent-2,#7c5cff);"></span>
+        <span style="font-size:12.5px;font-weight:600;color:#0a1733;">Avalara · tax synced</span>
+      </div>
+      <div style="position:absolute;bottom:-22px;right:-26px;display:flex;align-items:center;gap:10px;padding:11px 15px;border-radius:14px;background:rgba(255,255,255,.95);box-shadow:0 18px 40px -14px rgba(0,0,0,.5);animation:ksFloat 8s ease-in-out infinite;">
+        <span class="ks-text-grad" style="font-family:'Space Grotesk';font-weight:700;font-size:15px;">QuickBooks</span>
+        <span style="font-size:12px;color:#5b6b85;font-weight:500;">in sync</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST MARQUEE ============ -->
+<section style="background:#fff;border-bottom:1px solid #eef2f8;padding:30px 0;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <p style="text-align:center;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#8b98ad;font-weight:600;margin:0 0 22px;">Connecting the US tools your business already runs on</p>
+    <div style="position:relative;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);">
+      <div style="display:flex;width:max-content;gap:54px;align-items:center;animation:ksMarquee 28s linear infinite;animation-play-state:var(--ks-anim,running);" style-hover="animation-play-state:paused;">
+        <sc-for list="{{ integrationsLoop }}" as="g" hint-placeholder-count="0">
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:19px;color:#9aa7bd;white-space:nowrap;">{{ g }}</span>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROBLEM STATEMENT ============ -->
+<section style="background:#f5f8fd;padding:100px 0;">
+  <div class="ks-r-2col" style="max-width:1260px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center;">
+    <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">The problem</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0 0 18px;color:#0a1733;">Disconnected systems are <span class="ks-text-grad">quietly costing you</span></h2>
+      <p style="font-size:16.5px;line-height:1.64;color:#5b6b85;margin:0 0 16px;">Sales runs in one tool, accounting in another, inventory somewhere else — and reporting becomes a manual, error-prone scramble at the end of every month. Data gets re-entered, decisions get delayed, and no one trusts the numbers.</p>
+      <p style="font-size:16.5px;line-height:1.64;color:#34425c;margin:0;font-weight:500;">Trilogiks unifies your operations on Odoo — connecting every department, automating the busywork, and giving you a single source of truth.</p>
+    </div>
+    <div data-reveal data-reveal-delay="120" class="ks-r-probvis" style="display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;gap:8px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <sc-for list="{{ scattered }}" as="s" hint-placeholder-count="5">
+          <div style="display:flex;align-items:center;gap:9px;padding:11px 14px;border-radius:11px;background:#fff;border:1px dashed #d6deec;font-size:13.5px;font-weight:500;color:#7d8aa0;transform:rotate({{ s.rot }});">
+            <span style="width:7px;height:7px;border-radius:2px;background:#c2ccdd;"></span>{{ s.name }}
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;color:#b6c2d6;">
+        <svg width="40" height="24" viewBox="0 0 40 24" fill="none"><path d="M2 12h32M28 5l8 7-8 7" stroke="var(--ks-accent,#0a6bff)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="ks-spot" style="position:relative;border-radius:18px;background:linear-gradient(160deg,#0a1838,#0a52e0);border:1px solid rgba(255,255,255,.12);padding:26px 22px;color:#fff;box-shadow:0 28px 56px -28px var(--ks-glow-1,rgba(10,108,255,.6));overflow:hidden;">
+        <div style="position:relative;z-index:1;">
+          <div class="ks-anim-grad" style="display:inline-flex;width:44px;height:44px;align-items:center;justify-content:center;border-radius:12px;background:rgba(255,255,255,.16);margin-bottom:14px;">
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none"><path d="M16 5 L27 25 L5 25 Z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><circle cx="16" cy="5" r="2.6" fill="#fff"/><circle cx="27" cy="25" r="2.6" fill="#fff"/><circle cx="5" cy="25" r="2.6" fill="#fff"/></svg>
+          </div>
+          <div style="font-family:'Space Grotesk';font-weight:700;font-size:19px;margin-bottom:6px;">One unified Odoo ERP</div>
+          <div style="font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.72);">Sales, inventory, accounting, CRM, HR & more — connected, automated, trusted.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES EXPLORER ============ -->
+<section id="services" style="background:#fff;padding:108px 0;scroll-margin-top:80px;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div data-reveal style="max-width:700px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">What we do</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;color:#0a1733;">Everything Odoo, <span class="ks-text-grad">under one roof</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:#5b6b85;margin:0;">Plan, build, run and grow your Odoo ERP with one specialist team. Pick a capability to explore what's included.</p>
+    </div>
+
+    <div class="ks-r-svc" style="display:grid;grid-template-columns:360px 1fr;gap:26px;margin-top:46px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <sc-for list="{{ serviceTabs }}" as="s" hint-placeholder-count="7">
+          <button onClick="{{ s.onClick }}" style="{{ s.tabStyle }}">
+            <span style="display:inline-flex;width:42px;height:42px;flex:none;align-items:center;justify-content:center;border-radius:11px;background:{{ s.iconBg }};transition:background .25s ease;">
+              <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="{{ s.icon }}" stroke="{{ s.iconColor }}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span style="display:flex;flex-direction:column;gap:2px;text-align:left;">
+              <span style="font-weight:600;font-size:15px;color:#0a1733;">{{ s.title }}</span>
+              <span style="font-size:12px;color:#7d8aa0;">{{ s.tagline }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+      <div class="ks-spot" style="position:relative;border-radius:22px;background:#fff;border:1px solid #e7edf6;box-shadow:0 30px 60px -36px rgba(12,40,90,.28);padding:42px;overflow:hidden;min-height:420px;">
+        <div style="position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,var(--ks-glow-1,rgba(10,108,255,.1)),transparent 65%);opacity:.5;"></div>
+        <div style="position:relative;display:flex;align-items:center;gap:14px;margin-bottom:8px;">
+          <span class="ks-text-grad" style="font-family:'Space Grotesk';font-weight:700;font-size:14px;letter-spacing:.04em;">{{ active.index }}</span>
+          <span style="height:1px;flex:1;background:#e7edf6;"></span>
+          <span style="font-size:12px;font-weight:600;color:#7d8aa0;text-transform:uppercase;letter-spacing:.1em;">{{ active.tagline }}</span>
+        </div>
+        <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:29px;letter-spacing:-.02em;margin:0 0 14px;color:#0a1733;">{{ active.title }}</h3>
+        <p style="font-size:16px;line-height:1.62;color:#5b6b85;margin:0 0 26px;max-width:640px;">{{ active.desc }}</p>
+        <div class="ks-r-2to1" style="display:grid;grid-template-columns:1fr 1fr;gap:13px 30px;margin-bottom:30px;">
+          <sc-for list="{{ active.points }}" as="p" hint-placeholder-count="6">
+            <div style="display:flex;align-items:flex-start;gap:11px;">
+              <span style="display:inline-flex;width:22px;height:22px;flex:none;align-items:center;justify-content:center;border-radius:7px;background:var(--ks-grad,rgba(10,108,255,.1));margin-top:1px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span style="font-size:14.5px;line-height:1.45;color:#34425c;font-weight:500;">{{ p }}</span>
+            </div>
+          </sc-for>
+        </div>
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;color:var(--ks-accent,#0a6bff);text-decoration:none;" style-hover="gap:12px;">
+          {{ active.cta }}
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="var(--ks-accent,#0a6bff)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY / ABOUT ============ -->
+<section id="about" style="position:relative;background:linear-gradient(165deg,#0a1838 0%,#0e1f49 55%,#0a1430 100%);color:#fff;padding:108px 0;overflow:hidden;scroll-margin-top:70px;">
+  <div class="ks-aurora" style="background:radial-gradient(40% 44% at 28% 22%,var(--ks-glow-2,rgba(124,92,255,.32)),transparent 70%),radial-gradient(38% 40% at 78% 72%,var(--ks-glow-1,rgba(10,108,255,.4)),transparent 72%);"></div>
+  <div style="position:relative;max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div data-reveal style="text-align:center;max-width:720px;margin:0 auto 50px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#9db4ff;font-weight:700;margin-bottom:14px;">Why Trilogiks</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4vw,48px);line-height:1.07;letter-spacing:-.02em;margin:0 0 16px;">We start with your business, <span class="ks-text-grad">not the software</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:rgba(255,255,255,.72);margin:0;">Certified Odoo experts who map your processes before touching a single setting — so the system fits how your team actually works.</p>
+    </div>
+    <div class="ks-r-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+      <sc-for list="{{ whyPoints }}" as="w" hint-placeholder-count="6">
+        <div class="ks-spot" data-reveal data-reveal-delay="{{ w._delay }}" style="position:relative;border-radius:18px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:28px;transition:transform .3s ease,background .3s ease,border-color .3s ease;opacity:0;transform:translateY(26px);overflow:hidden;" style-hover="transform:translateY(-6px);background:rgba(255,255,255,.09);border-color:var(--ks-accent,rgba(124,92,255,.4));">
+          <div style="position:relative;z-index:1;">
+            <div class="ks-anim-grad" style="display:inline-flex;width:48px;height:48px;align-items:center;justify-content:center;border-radius:12px;background:var(--ks-grad,linear-gradient(150deg,#0a78ff,#0a52e0));margin-bottom:18px;box-shadow:0 12px 26px -12px var(--ks-glow-1,rgba(10,108,255,.6));">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="{{ w.icon }}" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18px;margin:0 0 9px;color:#fff;">{{ w.title }}</h3>
+            <p style="font-size:14px;line-height:1.55;color:rgba(255,255,255,.66);margin:0;">{{ w.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" style="background:#fff;padding:108px 0;scroll-margin-top:70px;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div data-reveal style="text-align:center;max-width:680px;margin:0 auto 52px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">How we deliver</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;color:#0a1733;">A proven <span class="ks-text-grad">8-step process</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:#5b6b85;margin:0;">From first conversation to a live system your team actually uses — designed to de-risk every stage.</p>
+    </div>
+    <div class="ks-r-4col" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <sc-for list="{{ process }}" as="p" hint-placeholder-count="8">
+        <div class="ks-spot" data-reveal data-reveal-delay="{{ p._delay }}" style="position:relative;border-radius:16px;background:#fff;border:1px solid #e7edf6;padding:24px;opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,.8,.3,1),transform .7s cubic-bezier(.16,.8,.3,1),box-shadow .3s ease;overflow:hidden;" style-hover="box-shadow:0 24px 48px -30px var(--ks-glow-1,rgba(12,40,90,.4));">
+          <div style="position:relative;z-index:1;">
+            <span class="ks-text-grad" style="font-family:'Space Grotesk';font-weight:700;font-size:30px;display:block;margin-bottom:12px;">{{ p.num }}</span>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:16px;line-height:1.3;margin:0 0 6px;color:#0a1733;">{{ p.title }}</h3>
+            <p style="font-size:13px;line-height:1.5;color:#7d8aa0;margin:0;">{{ p.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INDUSTRIES ============ -->
+<section id="industries" style="background:#f5f8fd;padding:108px 0;scroll-margin-top:70px;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div data-reveal style="max-width:680px;margin-bottom:46px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">Industries</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;color:#0a1733;">Built for the way <span class="ks-text-grad">your industry runs</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:#5b6b85;margin:0;">Each build reflects the realities of how that industry actually operates — with the deepest track record where it counts.</p>
+    </div>
+    <div class="ks-r-4col" style="display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:24px;">
+      <sc-for list="{{ industries }}" as="i" hint-placeholder-count="4">
+        <div class="ks-spot" data-reveal data-reveal-delay="{{ i._delay }}" style="position:relative;border-radius:18px;background:#fff;border:1px solid #e7edf6;padding:26px;opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,.8,.3,1),transform .3s ease,box-shadow .3s ease;overflow:hidden;" style-hover="transform:translateY(-6px);box-shadow:0 28px 56px -34px var(--ks-glow-1,rgba(12,40,90,.34));">
+          <div style="position:relative;z-index:1;">
+            <div style="display:inline-flex;width:46px;height:46px;align-items:center;justify-content:center;border-radius:12px;background:var(--ks-glow-1,rgba(10,108,255,.1));margin-bottom:16px;">
+              <svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="{{ i.icon }}" stroke="var(--ks-accent,#0a6bff)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:17px;margin:0 0 8px;color:#0a1733;">{{ i.title }}</h3>
+            <p style="font-size:13.5px;line-height:1.55;color:#5b6b85;margin:0;">{{ i.desc }}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div data-reveal style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;">
+      <span style="font-size:13px;font-weight:600;color:#7d8aa0;margin-right:6px;">We also deliver for</span>
+      <sc-for list="{{ moreIndustries }}" as="mi" hint-placeholder-count="8">
+        <span style="font-size:13px;font-weight:500;color:#34425c;background:#fff;border:1px solid #e2e8f2;padding:7px 14px;border-radius:999px;">{{ mi }}</span>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES ============ -->
+<section id="work" style="background:#fff;padding:108px 0;scroll-margin-top:70px;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div data-reveal style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:44px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <div style="max-width:620px;">
+        <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">Case studies</span>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0;color:#0a1733;">Real problems, <span class="ks-text-grad">measurable results</span></h2>
+      </div>
+      <span style="font-size:14.5px;color:#7d8aa0;max-width:300px;">Complex operations turned into clean, scalable Odoo systems</span>
+    </div>
+    <div class="ks-r-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <sc-for list="{{ cases }}" as="c" hint-placeholder-count="0">
+        <article data-reveal data-reveal-delay="{{ c._delay }}" style="display:flex;flex-direction:column;border-radius:18px;background:#fff;border:1px solid #e7edf6;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease;opacity:0;transform:translateY(26px);" style-hover="transform:translateY(-6px);box-shadow:0 30px 60px -34px var(--ks-glow-1,rgba(12,40,90,.32));">
+          <div style="position:relative;height:180px;overflow:hidden;">
+            <img data-src="{{ c.img }}" alt="{{ c.title }}" style="width:100%;height:100%;object-fit:cover;">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,18,51,.1),rgba(7,18,51,.62));"></div>
+            <span style="position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.92);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:{{ c.tagColor }};">{{ c.tag }}</span>
+            <h3 style="position:absolute;bottom:14px;left:14px;right:14px;font-family:'Space Grotesk';font-weight:700;font-size:20px;line-height:1.2;color:#fff;margin:0;">{{ c.title }}</h3>
+          </div>
+          <div style="padding:24px;display:flex;flex-direction:column;flex:1;">
+            <p style="font-size:14px;line-height:1.55;color:#5b6b85;margin:0 0 16px;">{{ c.solution }}</p>
+            <div style="display:flex;flex-direction:column;gap:9px;margin-top:auto;">
+              <sc-for list="{{ c.results }}" as="r" hint-placeholder-count="3">
+                <div style="display:flex;align-items:flex-start;gap:9px;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="margin-top:2px;flex:none;"><path d="M20 6 9 17l-5-5" stroke="var(--ks-accent,#0a6bff)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="font-size:13.5px;line-height:1.45;color:#34425c;font-weight:500;">{{ r }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section style="background:#f5f8fd;padding:104px 0;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div data-reveal style="text-align:center;max-width:640px;margin:0 auto 48px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">Client voices</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(28px,3.6vw,44px);line-height:1.1;letter-spacing:-.02em;margin:0;color:#0a1733;">Partners, <span class="ks-text-grad">not just vendors</span></h2>
+    </div>
+    <div class="ks-r-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
+      <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="0">
+        <div class="ks-spot" data-reveal data-reveal-delay="{{ t._delay }}" style="position:relative;display:flex;flex-direction:column;border-radius:18px;background:#fff;border:1px solid #e7edf6;padding:30px;box-shadow:0 20px 50px -38px rgba(12,40,90,.4);opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);overflow:hidden;">
+          <div style="position:relative;z-index:1;display:flex;flex-direction:column;flex:1;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" style="margin-bottom:16px;"><path d="M10 11H6a1 1 0 01-1-1V7a3 3 0 013-3M19 11h-4a1 1 0 01-1-1V7a3 3 0 013-3M5 11v3a3 3 0 003 3M14 11v3a3 3 0 003 3" stroke="var(--ks-accent,#0a6bff)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
+            <p style="font-size:15.5px;line-height:1.62;color:#34425c;margin:0 0 24px;flex:1;">{{ t.quote }}</p>
+            <div style="display:flex;align-items:center;gap:13px;">
+              <img data-src="{{ t.avatar }}" alt="{{ t.name }}" style="width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #e7edf6;">
+              <div>
+                <div style="font-weight:600;font-size:14.5px;color:#0a1733;">{{ t.name }}</div>
+                <div style="font-size:13px;color:#7d8aa0;">{{ t.role }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section id="pricing" style="background:#fff;padding:108px 0;scroll-margin-top:70px;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div data-reveal style="text-align:center;max-width:680px;margin:0 auto 52px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">Engagement models</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;color:#0a1733;">Scoped to your needs, <span class="ks-text-grad">priced in USD</span></h2>
+      <p style="font-size:17px;line-height:1.6;color:#5b6b85;margin:0;">No fixed boxes. We scope to your business and send a clear written quote — here's how engagements typically size up.</p>
+    </div>
+    <div class="ks-r-pricing" style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start;">
+      <sc-for list="{{ pricing }}" as="pl" hint-placeholder-count="3">
+        <div data-reveal data-reveal-delay="{{ pl._delay }}" style="{{ pl.cardStyle }}">
+          <sc-if value="{{ pl.featured }}" hint-placeholder-val="{{ true }}">
+            <span style="position:absolute;top:18px;right:18px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.18);padding:5px 11px;border-radius:999px;">Most popular</span>
+          </sc-if>
+          <span style="font-family:'Space Grotesk';font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:{{ pl.kicker }};">{{ pl.name }}</span>
+          <p style="font-size:14px;line-height:1.5;color:{{ pl.bestColor }};margin:12px 0 22px;min-height:42px;">{{ pl.best }}</p>
+          <div style="height:1px;background:{{ pl.rule }};margin-bottom:22px;"></div>
+          <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+            <sc-for list="{{ pl.features }}" as="f" hint-placeholder-count="5">
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" style="margin-top:2px;flex:none;"><path d="M20 6 9 17l-5-5" stroke="{{ pl.check }}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-size:14px;line-height:1.45;color:{{ pl.featColor }};font-weight:500;">{{ f }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <a href="#contact" class="ks-sheen" style="{{ pl.btnStyle }}">Request a Quote</a>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS BAND ============ -->
+<section class="ks-anim-grad" style="position:relative;background:var(--ks-grad,linear-gradient(135deg,#0a1838,#0a52e0));color:#fff;padding:64px 0;overflow:hidden;">
+  <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;opacity:.5;"></div>
+  <div class="ks-r-stats" style="position:relative;max-width:1160px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center;">
+    <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+      <div data-reveal data-reveal-delay="{{ s._delay }}" style="opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease;">
+        <div data-count="{{ s.value }}" style="font-family:'Space Grotesk';font-weight:700;font-size:clamp(34px,4vw,50px);line-height:1;margin-bottom:8px;">{{ s.value }}</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.8);font-weight:500;">{{ s.label }}</div>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ============ CTA BANNER ============ -->
+<section style="background:#fff;padding:96px 0;">
+  <div data-reveal style="max-width:1160px;margin:0 auto;padding:0 24px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+    <div class="ks-spot ks-r-ctapad" style="position:relative;border-radius:26px;background:linear-gradient(150deg,#071233,#0a3aa0);overflow:hidden;padding:64px 56px;text-align:center;box-shadow:0 40px 90px -40px var(--ks-glow-1,rgba(10,108,255,.7));">
+      <div class="ks-aurora" style="background:radial-gradient(45% 60% at 25% 30%,var(--ks-glow-1,rgba(10,108,255,.5)),transparent 70%),radial-gradient(40% 55% at 80% 70%,var(--ks-glow-2,rgba(124,92,255,.45)),transparent 72%);"></div>
+      <div style="position:relative;z-index:1;">
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,4vw,48px);line-height:1.08;letter-spacing:-.02em;margin:0 0 16px;color:#fff;">Ready to transform how<br>your business runs?</h2>
+        <p style="font-size:17.5px;line-height:1.6;color:rgba(255,255,255,.76);max-width:560px;margin:0 auto 32px;">Let us show you what Odoo, properly implemented, looks like for your business and industry.</p>
+        <a href="#contact" class="ks-sheen ks-magnetic" style="position:relative;display:inline-flex;align-items:center;gap:10px;padding:17px 32px;border-radius:999px;background:#fff;color:#0a1733;font-weight:700;font-size:15.5px;text-decoration:none;box-shadow:0 16px 40px -12px rgba(0,0,0,.5);transition:transform .25s ease;overflow:hidden;" style-hover="transform:translateY(-2px);">
+          Book Your Free ERP Consultation
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#0a1733" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" style="background:#f5f8fd;padding:108px 0;scroll-margin-top:70px;">
+  <div class="ks-r-2col" style="max-width:1180px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1.05fr;gap:54px;align-items:start;">
+    <div data-reveal style="opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);">
+      <span style="display:inline-block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ks-accent,#0a6bff);font-weight:700;margin-bottom:14px;">Let's talk</span>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(30px,3.8vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;color:#0a1733;">Let's talk about <span class="ks-text-grad">your ERP.</span></h2>
+      <p style="font-size:17px;line-height:1.62;color:#5b6b85;margin:0 0 30px;max-width:440px;">Tell us what you're trying to fix or build. We'll get back to you with next steps — and if it's a fit, a free consultation that maps out your options. No pressure, no jargon.</p>
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <sc-for list="{{ contactPoints }}" as="cp" hint-placeholder-count="3">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <span style="display:inline-flex;width:44px;height:44px;flex:none;align-items:center;justify-content:center;border-radius:12px;background:#fff;border:1px solid #e7edf6;box-shadow:0 8px 20px -14px rgba(12,40,90,.4);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="{{ cp.icon }}" stroke="var(--ks-accent,#0a6bff)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div>
+              <div style="font-size:12px;color:#7d8aa0;font-weight:600;text-transform:uppercase;letter-spacing:.08em;">{{ cp.label }}</div>
+              <div style="font-size:15.5px;color:#0a1733;font-weight:600;">{{ cp.value }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div data-reveal data-reveal-delay="120" style="position:relative;border-radius:22px;background:#fff;border:1px solid #e7edf6;box-shadow:0 40px 80px -44px rgba(12,40,90,.4);padding:38px;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .8s cubic-bezier(.16,.8,.3,1);overflow:hidden;">
+      <div style="position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,var(--ks-glow-1,rgba(10,108,255,.12)),transparent 68%);opacity:.5;"></div>
+      <div class="ks-r-2to1" style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#34425c;">Full name
+          <input type="text" placeholder="Jane Doe" style="font-family:inherit;font-size:14.5px;padding:12px 14px;border-radius:11px;border:1px solid #e2e8f2;background:#f8fafd;color:#0a1733;outline:none;transition:border-color .2s ease,box-shadow .2s ease;" style-focus="border-color:var(--ks-accent,#0a6bff);box-shadow:0 0 0 3px var(--ks-glow-1,rgba(10,108,255,.12));">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#34425c;">Work email
+          <input type="email" placeholder="jane@company.com" style="font-family:inherit;font-size:14.5px;padding:12px 14px;border-radius:11px;border:1px solid #e2e8f2;background:#f8fafd;color:#0a1733;outline:none;transition:border-color .2s ease,box-shadow .2s ease;" style-focus="border-color:var(--ks-accent,#0a6bff);box-shadow:0 0 0 3px var(--ks-glow-1,rgba(10,108,255,.12));">
+        </label>
+      </div>
+      <div class="ks-r-2to1" style="position:relative;display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+        <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#34425c;">Company
+          <input type="text" placeholder="Acme Inc." style="font-family:inherit;font-size:14.5px;padding:12px 14px;border-radius:11px;border:1px solid #e2e8f2;background:#f8fafd;color:#0a1733;outline:none;transition:border-color .2s ease,box-shadow .2s ease;" style-focus="border-color:var(--ks-accent,#0a6bff);box-shadow:0 0 0 3px var(--ks-glow-1,rgba(10,108,255,.12));">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#34425c;">Phone <span style="color:#aab6c8;font-weight:500;">(optional)</span>
+          <input type="tel" placeholder="+1 (555) 000-0000" style="font-family:inherit;font-size:14.5px;padding:12px 14px;border-radius:11px;border:1px solid #e2e8f2;background:#f8fafd;color:#0a1733;outline:none;transition:border-color .2s ease,box-shadow .2s ease;" style-focus="border-color:var(--ks-accent,#0a6bff);box-shadow:0 0 0 3px var(--ks-glow-1,rgba(10,108,255,.12));">
+        </label>
+      </div>
+      <label style="position:relative;display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#34425c;margin-bottom:16px;">Service of interest
+        <select style="font-family:inherit;font-size:14.5px;padding:12px 14px;border-radius:11px;border:1px solid #e2e8f2;background:#f8fafd;color:#0a1733;outline:none;transition:border-color .2s ease,box-shadow .2s ease;" style-focus="border-color:var(--ks-accent,#0a6bff);box-shadow:0 0 0 3px var(--ks-glow-1,rgba(10,108,255,.12));">
+          <option>Odoo Implementation</option>
+          <option>Odoo Customization</option>
+          <option>Odoo Integration</option>
+          <option>Odoo Migration (QuickBooks / NetSuite / legacy)</option>
+          <option>Support &amp; Maintenance</option>
+          <option>Website &amp; Portal Development</option>
+          <option>Performance Optimization</option>
+          <option>Not sure yet — let's scope it</option>
+        </select>
+      </label>
+      <label style="position:relative;display:flex;flex-direction:column;gap:7px;font-size:13px;font-weight:600;color:#34425c;margin-bottom:22px;">Message / project details
+        <textarea rows="3" placeholder="A few lines about your goals and timeline…" style="font-family:inherit;font-size:14.5px;padding:12px 14px;border-radius:11px;border:1px solid #e2e8f2;background:#f8fafd;color:#0a1733;outline:none;resize:vertical;transition:border-color .2s ease,box-shadow .2s ease;" style-focus="border-color:var(--ks-accent,#0a6bff);box-shadow:0 0 0 3px var(--ks-glow-1,rgba(10,108,255,.12));"></textarea>
+      </label>
+      <button class="ks-anim-grad ks-sheen" style="position:relative;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px;border:none;border-radius:12px;background:var(--ks-grad,linear-gradient(135deg,#0a78ff,#0a52e0));color:#fff;font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;box-shadow:0 16px 34px -12px var(--ks-glow-1,rgba(10,108,255,.7));transition:transform .25s ease;overflow:hidden;" style-hover="transform:translateY(-2px);">
+        Schedule My Free Consultation
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background:#060f29;color:#fff;padding:72px 0 34px;">
+  <div style="max-width:1260px;margin:0 auto;padding:0 24px;">
+    <div class="ks-r-footer" style="display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1);">
+      <div style="max-width:340px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+          <span class="ks-anim-grad" style="display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border-radius:12px;background:var(--ks-grad,linear-gradient(150deg,#0a78ff,#0a52e0));">
+            <svg width="19" height="19" viewBox="0 0 32 32" fill="none"><path d="M16 5 L27 25 L5 25 Z" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/><circle cx="16" cy="5" r="2.8" fill="#fff"/><circle cx="27" cy="25" r="2.8" fill="#fff"/><circle cx="5" cy="25" r="2.8" fill="#fff"/></svg>
+          </span>
+          <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;">trilogiks</span>
+        </div>
+        <p style="font-size:14.5px;line-height:1.65;color:rgba(255,255,255,.6);margin:0 0 22px;">Run your business smarter with Odoo, built around you. Certified Odoo experts serving US businesses with US-hours support.</p>
+        <div style="display:flex;gap:11px;">
+          <sc-for list="{{ socials }}" as="so" hint-placeholder-count="2">
+            <a href="#" style="display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);transition:background .25s ease;" style-hover="background:var(--ks-accent,rgba(10,108,255,.3));">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="{{ so }}" stroke="#cfe0ff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <sc-for list="{{ footerCols }}" as="col" hint-placeholder-count="3">
+        <div>
+          <h4 style="font-family:'Space Grotesk';font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin:0 0 18px;">{{ col.title }}</h4>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <sc-for list="{{ col.links }}" as="lk" hint-placeholder-count="5">
+              <a href="#" style="font-size:14.5px;color:rgba(255,255,255,.72);text-decoration:none;transition:color .2s ease;" style-hover="color:#fff;">{{ lk }}</a>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-top:26px;font-size:13.5px;color:rgba(255,255,255,.5);">
+      <span>© 2026 Trilogiks. All rights reserved.</span>
+      <span style="display:flex;align-items:center;gap:8px;"><span style="width:7px;height:7px;border-radius:50%;background:#36d36b;"></span>info@trilogiks.com · Pakistan, serving clients globally</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900},&quot;gradientTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Electric Blue&quot;,&quot;Violet Aurora&quot;,&quot;Sunset Glow&quot;,&quot;Emerald Mint&quot;],&quot;default&quot;:&quot;Electric Blue&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;glowIntensity&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Subtle&quot;,&quot;Balanced&quot;,&quot;Intense&quot;],&quot;default&quot;:&quot;Balanced&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;animatedGradient&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;auroraOverlay&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { active: 0, menuOpen: false };
+  rootRef = React.createRef();
+  headerRef = React.createRef();
+  brandRef = React.createRef();
+  navRef = React.createRef();
+  progressRef = React.createRef();
+  topRef = React.createRef();
+  tiltRef = React.createRef();
+  heroSecRef = React.createRef();
+  menuRef = React.createRef();
+  burgerRef = React.createRef();
+  burgerIconRef = React.createRef();
+
+  themes = {
+    'Electric Blue': { accent: '#2a8fff', accent2: '#7c5cff', grad: 'linear-gradient(135deg,#0a78ff,#0a52e0)', gradText: 'linear-gradient(100deg,#4da3ff,#9b7cff)', glow1: 'rgba(10,108,255,.55)', glow2: 'rgba(124,92,255,.4)' },
+    'Violet Aurora': { accent: '#8b5cff', accent2: '#c06bff', grad: 'linear-gradient(135deg,#7c5cff,#b24bff)', gradText: 'linear-gradient(100deg,#a98bff,#ff8fd0)', glow1: 'rgba(124,92,255,.55)', glow2: 'rgba(190,75,255,.4)' },
+    'Sunset Glow': { accent: '#ff7a45', accent2: '#ff4d6d', grad: 'linear-gradient(135deg,#ff8a3d,#ff4d6d)', gradText: 'linear-gradient(100deg,#ffb347,#ff6f91)', glow1: 'rgba(255,122,69,.5)', glow2: 'rgba(255,77,109,.4)' },
+    'Emerald Mint': { accent: '#10c98b', accent2: '#22d3ee', grad: 'linear-gradient(135deg,#10c98b,#0891b2)', gradText: 'linear-gradient(100deg,#34e0a1,#5eead4)', glow1: 'rgba(16,201,139,.5)', glow2: 'rgba(34,211,238,.42)' },
+  };
+  glowLevels = { Subtle: { op: '.5', blur: '52px' }, Balanced: { op: '.85', blur: '36px' }, Intense: { op: '1.05', blur: '24px' } };
+
+  applyTheme() {
+    const root = this.rootRef.current; if (!root) return;
+    const p = this.props || {};
+    const t = this.themes[p.gradientTheme] || this.themes['Electric Blue'];
+    root.style.setProperty('--ks-accent', t.accent);
+    root.style.setProperty('--ks-accent-2', t.accent2);
+    root.style.setProperty('--ks-grad', t.grad);
+    root.style.setProperty('--ks-grad-text', t.gradText);
+    root.style.setProperty('--ks-glow-1', t.glow1);
+    root.style.setProperty('--ks-glow-2', t.glow2);
+    const g = this.glowLevels[p.glowIntensity] || this.glowLevels['Balanced'];
+    root.style.setProperty('--ks-orb-opacity', g.op);
+    root.style.setProperty('--ks-orb-blur', g.blur);
+    root.style.setProperty('--ks-anim', p.animatedGradient === false ? 'paused' : 'running');
+    root.style.setProperty('--ks-aurora-op', p.auroraOverlay === false ? '0' : '1');
+  }
+
+  applyImgs() {
+    const root = this.rootRef.current; if (!root) return;
+    root.querySelectorAll('img[data-src]').forEach((img) => {
+      const s = img.getAttribute('data-src');
+      if (s && s.indexOf('{{') === -1 && img.getAttribute('src') !== s) img.setAttribute('src', s);
+    });
+  }
+
+  _parseCount(raw) {
+    const m = String(raw).match(/^(\D*)([\d.,]+)(\D*)$/); if (!m) return null;
+    const numStr = m[2];
+    return { pre: m[1], suf: m[3], hasComma: numStr.indexOf(',') > -1, dec: (numStr.split('.')[1] || '').length, target: parseFloat(numStr.replace(/,/g, '')) };
+  }
+  _fmtCount(raw, val) {
+    const p = this._parseCount(raw); if (!p) return String(raw);
+    let s = val.toFixed(p.dec);
+    if (p.hasComma) s = Number(s).toLocaleString('en-US', { minimumFractionDigits: p.dec, maximumFractionDigits: p.dec });
+    return p.pre + s + p.suf;
+  }
+  _animateCount(el) {
+    if (el._counted) return;
+    const raw = el.getAttribute('data-count'); const p = this._parseCount(raw); if (!p) return;
+    el._counted = true;
+    const dur = 1300, t0 = performance.now();
+    const tick = (now) => {
+      const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = this._fmtCount(raw, p.target * e);
+      if (k < 1) requestAnimationFrame(tick); else el.textContent = this._fmtCount(raw, p.target);
+    };
+    requestAnimationFrame(tick);
+  }
+
+  componentDidMount() {
+    this.applyTheme();
+    this.applyImgs();
+
+    this._onScroll = () => {
+      const h = this.headerRef.current; if (!h) return;
+      const scrolled = window.scrollY > 36 || this.state.menuOpen;
+      h.style.background = scrolled ? 'rgba(255,255,255,.85)' : 'transparent';
+      h.style.boxShadow = scrolled ? '0 10px 34px -18px rgba(12,40,90,.3)' : 'none';
+      h.style.backdropFilter = scrolled ? 'blur(14px)' : 'none';
+      h.style.webkitBackdropFilter = scrolled ? 'blur(14px)' : 'none';
+      h.style.borderBottom = scrolled ? '1px solid rgba(12,40,90,.07)' : '1px solid transparent';
+      const brand = this.brandRef.current;
+      if (brand) brand.style.color = scrolled ? '#0a1733' : '#ffffff';
+      const nav = this.navRef.current;
+      if (nav) nav.style.color = scrolled ? '#0a1733' : 'rgba(255,255,255,.85)';
+      const burger = this.burgerRef.current;
+      if (burger) {
+        burger.style.color = scrolled ? '#0a1733' : '#ffffff';
+        burger.style.background = scrolled ? 'rgba(12,40,90,.05)' : 'rgba(255,255,255,.08)';
+        burger.style.borderColor = scrolled ? 'rgba(12,40,90,.12)' : 'rgba(255,255,255,.18)';
+      }
+
+      const doc = document.documentElement;
+      const max = (doc.scrollHeight - window.innerHeight) || 1;
+      const pct = Math.max(0, Math.min(1, window.scrollY / max));
+      if (this.progressRef.current) this.progressRef.current.style.width = (pct * 100) + '%';
+
+      const tp = this.topRef.current;
+      if (tp) {
+        const show = window.scrollY > 620;
+        tp.style.opacity = show ? '1' : '0';
+        tp.style.pointerEvents = show ? 'auto' : 'none';
+        tp.style.transform = show ? 'translateY(0) scale(1)' : 'translateY(16px) scale(.9)';
+      }
+
+      const root = this.rootRef.current;
+      if (root) {
+        const y = window.scrollY + 130;
+        const ids = ['services', 'industries', 'work', 'pricing', 'about'];
+        let cur = '';
+        ids.forEach((id) => { const el = document.getElementById(id); if (el && el.offsetTop <= y) cur = id; });
+        root.querySelectorAll('a[data-nav]').forEach((a) => {
+          const on = a.getAttribute('data-nav') === cur;
+          a.style.opacity = on ? '1' : '';
+          const u = a.querySelector('span');
+          if (u) u.style.transform = on ? 'scaleX(1)' : 'scaleX(0)';
+        });
+      }
+    };
+    window.addEventListener('scroll', this._onScroll, { passive: true });
+    this._onScroll();
+
+    if (this.rootRef.current) {
+      this.rootRef.current.querySelectorAll('[data-count]').forEach((el) => {
+        const raw = el.getAttribute('data-count') || el.textContent;
+        el.textContent = this._fmtCount(raw, 0);
+      });
+    }
+
+    const tilt = this.tiltRef.current;
+    if (tilt) {
+      this._tiltMove = (e) => {
+        const r = tilt.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        tilt.style.transform = 'perspective(1000px) rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+      };
+      this._tiltLeave = () => { tilt.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg)'; };
+      tilt.addEventListener('mousemove', this._tiltMove);
+      tilt.addEventListener('mouseleave', this._tiltLeave);
+    }
+
+    if (this.rootRef.current) {
+      this.rootRef.current.querySelectorAll('.ks-spot').forEach((card) => {
+        card.addEventListener('mousemove', (e) => {
+          const r = card.getBoundingClientRect();
+          card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+      });
+      this.rootRef.current.querySelectorAll('.ks-magnetic').forEach((el) => {
+        el.addEventListener('mousemove', (e) => {
+          const r = el.getBoundingClientRect();
+          const x = (e.clientX - r.left - r.width / 2) / r.width;
+          const y = (e.clientY - r.top - r.height / 2) / r.height;
+          el.style.transform = 'translate(' + (x * 8) + 'px,' + (y * 8 - 2) + 'px)';
+        });
+        el.addEventListener('mouseleave', () => { el.style.transform = ''; });
+      });
+    }
+
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          const d = parseInt(e.target.getAttribute('data-reveal-delay') || '0', 10);
+          setTimeout(() => {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'none';
+            const cs = e.target.querySelectorAll ? e.target.querySelectorAll('[data-count]') : [];
+            cs.forEach((c) => this._animateCount(c));
+            if (e.target.hasAttribute && e.target.hasAttribute('data-count')) this._animateCount(e.target);
+          }, d);
+          this._io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -7% 0px' });
+    this._revealTimer = setTimeout(() => {
+      if (!this.rootRef.current) return;
+      this.rootRef.current.querySelectorAll('[data-reveal]').forEach((el) => this._io.observe(el));
+    }, 60);
+  }
+
+  _applyMenu() {
+    const open = this.state.menuOpen;
+    const ic = this.burgerIconRef.current;
+    if (ic) { const p = ic.querySelector('path'); if (p) p.setAttribute('d', open ? 'M6 6l12 12M18 6L6 18' : 'M4 7h16M4 12h16M4 17h16'); }
+    if (this._onScroll) this._onScroll();
+  }
+
+  componentDidUpdate() { this.applyTheme(); this.applyImgs(); this._applyMenu(); }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._onScroll);
+    if (this._io) this._io.disconnect();
+    clearTimeout(this._revealTimer);
+    const tilt = this.tiltRef.current;
+    if (tilt && this._tiltMove) { tilt.removeEventListener('mousemove', this._tiltMove); tilt.removeEventListener('mouseleave', this._tiltLeave); }
+  }
+
+  renderVals() {
+    const stagger = (arr, step) => arr.map((x, i) => Object.assign({}, x, { _delay: i * (step || 80) }));
+
+    const trustBar = ['100+ projects delivered', '50+ happy clients', 'Certified Odoo experts', 'US-hours support'];
+    const integrations = ['QuickBooks', 'Avalara', 'ShipStation', 'Stripe', 'Shopify', 'Amazon', 'UPS', 'FedEx', 'PayPal'];
+    const integrationsLoop = integrations.concat(integrations);
+
+    const mockTiles = [
+      { label: 'Orders today', value: '1,284', delta: '+12.4%' },
+      { label: 'Revenue', value: '$94.2k', delta: '+8.1%' },
+      { label: 'On-time', value: '99.4%', delta: '+0.6%' },
+    ];
+    const barH = ['38px', '56px', '44px', '72px', '60px', '84px', '66px'];
+    const mockBars = barH.map((h, i) => ({ h, delay: (i * 0.09).toFixed(2) + 's' }));
+
+    const scattered = [
+      { name: 'Spreadsheets', rot: '-1.5deg' },
+      { name: 'Standalone accounting', rot: '1deg' },
+      { name: 'Separate inventory', rot: '-0.8deg' },
+      { name: 'Email & manual orders', rot: '1.4deg' },
+      { name: 'Disconnected CRM', rot: '-1.1deg' },
+    ];
+
+    const services = [
+      { title: 'Odoo Implementation', tagline: 'Plan · build · launch', icon: 'M21 16V8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8', cta: 'Get a free implementation quote',
+        desc: "It isn't about switching on modules — it's about mapping your business to the system so your team adopts it and your data stays clean. We plan, configure and launch Odoo end to end.",
+        points: ['Business analysis & process mapping', 'Module selection & configuration', 'Clean, validated data migration', 'Structured testing & QA', 'Role-based user training', 'Go-live & hypercare support'] },
+      { title: 'Odoo Customization', tagline: 'Built around you', icon: 'M8 9l-3 3 3 3M16 9l3 3-3 3M14 5l-4 14', cta: 'Discuss your custom build',
+        desc: "Standard Odoo covers a lot, but every business has workflows that don't fit the default. We build custom modules, fields, automations and apps so Odoo works the way you do — no cookie-cutter deployments.",
+        points: ['Custom modules & apps', 'Workflow automation', 'Custom fields & views', 'Reports & dashboards', 'Tailored UI/UX by role', 'Clean, upgrade-safe code'] },
+      { title: 'Odoo Integration', tagline: 'One connected stack', icon: 'M9 15l6-6M8.5 12.5l-2 2a3 3 0 004.2 4.2l2-2M15.5 11.5l2-2a3 3 0 00-4.2-4.2l-2 2', cta: 'Connect your tools',
+        desc: 'Your ERP is only as powerful as the systems it talks to. We connect Odoo to the US tools you run on — so data flows automatically and your team stops copying it by hand.',
+        points: ['QuickBooks & accounting sync', 'Avalara US sales tax', 'Stripe, PayPal & Authorize.Net', 'ShipStation, UPS, FedEx, USPS', 'Shopify, Amazon & eBay', 'Any third-party API'] },
+      { title: 'Odoo Migration', tagline: 'Move without data loss', icon: 'M4 8h13l-3-3M20 16H7l3 3', cta: 'Plan your migration',
+        desc: 'Outgrowing QuickBooks? Paying too much for NetSuite? We plan and execute migrations to Odoo with full data validation, customization carry-over and a tested cutover — so you launch with zero data loss.',
+        points: ['QuickBooks → Odoo', 'NetSuite & legacy ERP', 'Version upgrades', 'Data migration & validation', 'Customization carry-over', 'Tested cutover planning'] },
+      { title: 'Support & Maintenance', tagline: 'US-hours coverage', icon: 'M12 3a7 7 0 00-7 7v4a3 3 0 003 3M19 14v-4a7 7 0 00-7-7M5 14v3a3 3 0 003 3h4', cta: 'Talk to us about support',
+        desc: 'Software needs care after launch. Ongoing support, fixes, updates and optimization — backed by transparent SLAs and a team that already knows your system.',
+        points: ['Fast issue resolution', 'Updates & security patches', 'Enhancements as you grow', 'Monitoring & optimization', 'User support', 'Transparent, written SLAs'] },
+      { title: 'Website & Portal Development', tagline: 'Self-service on live data', icon: 'M3 5h18v12H3zM3 9h18M8 21h8M12 17v4', cta: 'Scope your portal',
+        desc: 'Give customers, partners and dealers a self-service portal connected directly to your live Odoo data — orders, invoices, tickets and more — reducing manual work on both sides.',
+        points: ['Customer portals', 'Partner & dealer portals', 'Odoo eCommerce stores', 'Branded Odoo websites', 'Custom portal logic', 'Live ERP data, no extra sync'] },
+      { title: 'Performance Optimization', tagline: 'Make it fast again', icon: 'M13 2 4 14h7l-1 8 9-12h-7l1-8z', cta: 'Request a performance audit',
+        desc: 'As data and users grow, an Odoo system that was once snappy can slow to a crawl. We diagnose the real bottleneck — database, custom code or server — and fix it.',
+        points: ['Full performance audit', 'Database tuning & indexing', 'Custom code review', 'Server & infra tuning', 'Ongoing monitoring', 'Measurable before & after'] },
+    ];
+    const activeIdx = this.state.active;
+    const serviceTabs = services.map((s, i) => {
+      const on = i === activeIdx;
+      return {
+        title: s.title, tagline: s.tagline, icon: s.icon,
+        iconBg: on ? 'var(--ks-grad,linear-gradient(150deg,#0a78ff,#0a52e0))' : 'var(--ks-glow-1,rgba(10,108,255,.1))',
+        iconColor: '#ffffff',
+        tabStyle: 'display:flex;align-items:center;gap:13px;width:100%;padding:13px 15px;border-radius:13px;cursor:pointer;text-align:left;transition:transform .2s ease,box-shadow .25s ease,border-color .25s ease,background .25s ease;font-family:inherit;'
+          + (on ? 'background:#fff;border:1px solid var(--ks-accent,#cfe0ff);box-shadow:0 16px 34px -22px var(--ks-glow-1,rgba(10,108,255,.55));transform:translateX(4px);' : 'background:#fff;border:1px solid #e7edf6;box-shadow:none;'),
+        onClick: () => this.setState({ active: i }),
+      };
+    });
+    const a = services[activeIdx];
+    const active = { index: ('0' + (activeIdx + 1)).slice(-2), tagline: a.tagline, title: a.title, desc: a.desc, points: a.points, cta: a.cta };
+
+    const whyPoints = stagger([
+      { title: 'Business-first approach', icon: 'M12 3a6 6 0 00-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0012 3zM9.5 19h5M10.5 21.5h3', desc: 'We map your processes before we touch a single setting, so the system fits your business — not the reverse.' },
+      { title: 'Scalable architecture', icon: 'M4 20V10M10 20V4M16 20v-7M22 20H2', desc: "We build for where you're going, not just where you are today." },
+      { title: 'Functional + technical', icon: 'M8 9l-3 3 3 3M16 9l3 3-3 3M14 5l-4 14', desc: 'Developers who understand operations, and consultants who understand code.' },
+      { title: 'No cookie-cutter builds', icon: 'M20 7 9 18l-5-5', desc: 'Every build is shaped around your workflows, industry and goals.' },
+      { title: 'Post-launch partnership', icon: 'M17 21v-2a4 4 0 00-4-4H7a4 4 0 00-4 4v2M11 7a4 4 0 11-8 0 4 4 0 018 0zM21 21v-2a4 4 0 00-3-3.9M16 3.1a4 4 0 010 7.8', desc: 'We stay on after go-live to optimize, train and grow with you.' },
+      { title: 'Transparent communication', icon: 'M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z', desc: 'Clear milestones, honest timelines, no surprises.' },
+    ], 70);
+
+    const process = stagger([
+      { num: '01', title: 'Discovery & Analysis', desc: 'We document how your business runs today.' },
+      { num: '02', title: 'Solution Planning', desc: 'Modules, customizations and a realistic timeline.' },
+      { num: '03', title: 'UI/UX & Process Design', desc: 'Screens and workflows your team will actually use.' },
+      { num: '04', title: 'Configuration & Dev', desc: 'Modules configured, customizations built.' },
+      { num: '05', title: 'Data Migration', desc: 'Records cleaned, mapped, imported and validated.' },
+      { num: '06', title: 'Testing & QA', desc: 'Real scenarios and edge cases caught early.' },
+      { num: '07', title: 'User Training', desc: 'Role-based training so the system gets adopted.' },
+      { num: '08', title: 'Go-Live & Support', desc: 'Hands-on hypercare and ongoing optimization.' },
+    ], 70);
+
+    const industries = stagger([
+      { title: 'Retail & eCommerce', icon: 'M6 2 3 6v14a1 1 0 001 1h16a1 1 0 001-1V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0', desc: 'Unify POS, online stores, inventory and customers — real-time stock across channels.' },
+      { title: 'Manufacturing', icon: 'M2 20h20M4 20V9l5 4V9l5 4V4l5 3v13', desc: 'BOMs, work orders, inventory and quality on one platform with accurate costing.' },
+      { title: 'Logistics & Distribution', icon: 'M1 3h15v13H1zM16 8h4l3 3v5h-7M5.5 19a2 2 0 100-4 2 2 0 000 4zM18.5 19a2 2 0 100-4 2 2 0 000 4z', desc: 'Warehousing, routing, partner allocation and shipping that scales with volume.' },
+      { title: 'Franchise & Multi-Company', icon: 'M3 21h18M5 21V7l7-4 7 4v14M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01', desc: 'Centralize operations across locations with consolidated reporting — our specialty.' },
+    ], 80);
+    const moreIndustries = ['Healthcare & Clinics', 'Construction', 'Rental & Events', 'Restaurants & Cloud Kitchens', 'Repair & Maintenance', 'Professional Services', 'Wholesale', 'Education & Training'];
+
+    const cases = stagger([
+      { img: 'assets/case/case1.webp', tag: 'Franchise / Multi-Company', tagColor: '#7c5cff', title: 'Freedom Fun USA',
+        solution: 'A multi-company Odoo ecosystem that standardized workflows across all franchises while keeping each entity\u2019s books separate.',
+        results: ['Centralized operations across all locations', 'Standardized workflows for every new location', 'Consolidated reporting in place of manual roll-ups'] },
+      { img: 'assets/case/case2.webp', tag: 'Logistics / Service Ops', tagColor: '#0a6bff', title: 'Online Laundry Platform',
+        solution: 'Customer and partner portals with workflow automation — orders route to the right partner automatically with self-service visibility.',
+        results: ['Fully digitized operations end to end', 'Automated order allocation to partners', 'Self-service portals for both sides'] },
+      { img: 'assets/case/case3.webp', tag: 'Wholesale / Distribution', tagColor: '#0a6bff', title: 'Dealer Ordering System',
+        solution: 'A custom Odoo dealer portal where dealers place orders directly, with shipping management integrated into the same flow.',
+        results: ['Faster, cleaner sales operations', 'Direct dealer self-ordering, fewer errors', 'Integrated shipping & fulfillment'] },
+    ], 100);
+
+    const testimonials = stagger([
+      { avatar: 'assets/avatar/a1.webp', name: 'Operations Lead', role: 'Freedom Fun USA', quote: 'Trilogiks transformed our complex operations into a scalable Odoo ecosystem.' },
+      { avatar: 'assets/avatar/a2.webp', name: 'COO', role: 'Multi-location Retailer', quote: 'Their understanding of our business workflows before development made a huge difference.' },
+      { avatar: 'assets/avatar/a3.webp', name: 'Founder', role: 'Online Services Platform', quote: 'From customization to integrations and automation, the team handled the entire ERP journey professionally.' },
+    ], 100);
+
+    const pricing = [
+      { name: 'Starter', best: 'For startups & small businesses getting onto Odoo.', featured: false,
+        features: ['Discovery & analysis', 'Essential modules setup', 'Light customization', 'Basic data migration', 'Group training', 'Standard SLA support'] },
+      { name: 'Growth', best: 'For growing businesses needing automation & integrations.', featured: true,
+        features: ['In-depth discovery', 'Extended modules', 'Moderate customization', 'Standard integrations included', 'Role-based training', 'Priority SLA support'] },
+      { name: 'Enterprise', best: 'For franchises, multi-company & enterprise operations.', featured: false,
+        features: ['In-depth discovery', 'Full module suite', 'Extensive customization', 'Advanced integrations', 'Dedicated training program', 'Dedicated team + SLA'] },
+    ].map((p, i) => {
+      const f = p.featured;
+      return Object.assign({}, p, {
+        _delay: i * 90,
+        kicker: f ? 'rgba(255,255,255,.85)' : 'var(--ks-accent,#0a6bff)',
+        bestColor: f ? 'rgba(255,255,255,.78)' : '#5b6b85',
+        featColor: f ? 'rgba(255,255,255,.9)' : '#34425c',
+        check: f ? '#ffffff' : 'var(--ks-accent,#0a6bff)',
+        rule: f ? 'rgba(255,255,255,.18)' : '#e7edf6',
+        cardStyle: 'position:relative;border-radius:20px;padding:34px 30px;overflow:hidden;opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.16,.8,.3,1),transform .3s ease,box-shadow .3s ease;'
+          + (f ? 'background:linear-gradient(160deg,#0a1838,#0a52e0);border:1px solid rgba(255,255,255,.16);box-shadow:0 36px 70px -34px var(--ks-glow-1,rgba(10,108,255,.7));color:#fff;'
+               : 'background:#fff;border:1px solid #e7edf6;box-shadow:0 24px 50px -36px rgba(12,40,90,.26);'),
+        btnStyle: 'position:relative;display:inline-flex;align-items:center;justify-content:center;width:100%;padding:13px;border-radius:11px;font-family:inherit;font-weight:600;font-size:14.5px;text-decoration:none;overflow:hidden;transition:transform .25s ease;'
+          + (f ? 'background:#fff;color:#0a1733;' : 'background:var(--ks-grad,linear-gradient(135deg,#0a78ff,#0a52e0));color:#fff;box-shadow:0 14px 28px -12px var(--ks-glow-1,rgba(10,108,255,.6));'),
+      });
+    });
+
+    const stats = stagger([
+      { value: '100+', label: 'Projects delivered' },
+      { value: '50+', label: 'Happy clients' },
+      { value: '8', label: 'Step proven process' },
+      { value: '7', label: 'Odoo service lines' },
+    ], 90);
+
+    const contactPoints = [
+      { icon: 'M4 6h16v12H4zM4 7l8 6 8-6', label: 'Email', value: 'info@trilogiks.com' },
+      { icon: 'M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11zM12 12a2.5 2.5 0 100-5 2.5 2.5 0 000 5z', label: 'Location', value: 'Pakistan — serving clients globally' },
+      { icon: 'M9 12a3 3 0 106 0 3 3 0 00-6 0zM12 3v3M12 18v3M3 12h3M18 12h3', label: 'Coverage', value: 'US-hours support overlap' },
+    ];
+
+    const socials = [
+      'M16 8a6 6 0 016 6v6h-4v-6a2 2 0 00-4 0v6h-4v-12h4v2a4 4 0 014-2zM6 9H2v11h4zM4 3a2 2 0 100 4 2 2 0 000-4z',
+      'M4 6h16v12H4zM4 7l8 6 8-6',
+    ];
+    const footerCols = [
+      { title: 'Services', links: ['Implementation', 'Customization', 'Integration', 'Migration', 'Support'] },
+      { title: 'Industries', links: ['Retail & eCommerce', 'Manufacturing', 'Logistics', 'Franchise', 'Healthcare'] },
+      { title: 'Company', links: ['About', 'Case Studies', 'Pricing', 'Blog', 'Contact'] },
+    ];
+
+    return {
+      rootRef: this.rootRef, headerRef: this.headerRef, brandRef: this.brandRef, navRef: this.navRef,
+      progressRef: this.progressRef, topRef: this.topRef, tiltRef: this.tiltRef, heroSecRef: this.heroSecRef,
+      scrollTop: () => window.scrollTo({ top: 0, behavior: 'smooth' }),
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      menuLinks: [
+        { label: 'Services', href: '#services' },
+        { label: 'Industries', href: '#industries' },
+        { label: 'Case Studies', href: '#work' },
+        { label: 'Pricing', href: '#pricing' },
+        { label: 'About', href: '#about' },
+      ],
+      menuRef: this.menuRef, burgerRef: this.burgerRef, burgerIconRef: this.burgerIconRef,
+      menuO: this.state.menuOpen ? '1' : '0',
+      menuT: this.state.menuOpen ? 'translateY(0) scale(1)' : 'translateY(-14px) scale(.98)',
+      menuPE: this.state.menuOpen ? 'auto' : 'none',
+      trustBar, integrationsLoop, mockTiles, mockBars, scattered,
+      serviceTabs, active,
+      whyPoints, process, industries, moreIndustries, cases, testimonials, pricing, stats,
+      contactPoints, socials, footerCols,
+    };
+  }
+}
+</script>
+</body>
+</html>
