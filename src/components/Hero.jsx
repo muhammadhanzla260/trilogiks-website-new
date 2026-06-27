@@ -27,15 +27,16 @@ export default function Hero() {
   return (
     <section className="ks-hero-sec" style={{
       position: 'relative', overflow: 'hidden',
+      clipPath: 'inset(0)',          /* forces filter:blur() children to be clipped */
       background: 'linear-gradient(140deg,#030c1f 0%,#061538 42%,#0a1f4a 100%)',
-      paddingTop: 148, paddingBottom: 108,
+      paddingTop: 120, paddingBottom: 44,
     }}>
       {/* Aurora overlay */}
       <div className="ks-aurora" style={{ background: 'radial-gradient(ellipse at 20% 50%, rgba(10,108,255,.35) 0%, transparent 70%), radial-gradient(ellipse at 80% 20%, rgba(124,92,255,.28) 0%, transparent 65%)' }} />
 
-      {/* Floating orbs */}
-      <div className="ks-orb" style={{ position: 'absolute', width: 520, height: 520, borderRadius: '50%', background: 'rgba(10,108,255,.22)', top: -120, right: -120 }} />
-      <div className="ks-orb" style={{ position: 'absolute', width: 380, height: 380, borderRadius: '50%', background: 'rgba(124,92,255,.18)', bottom: -80, left: -80, animationDelay: '-9s' }} />
+      {/* Floating orbs — clipped by section overflow:hidden */}
+      <div className="ks-orb" style={{ position: 'absolute', width: 420, height: 420, borderRadius: '50%', background: 'rgba(10,108,255,.22)', top: -80, right: -80 }} />
+      <div className="ks-orb" style={{ position: 'absolute', width: 300, height: 300, borderRadius: '50%', background: 'rgba(124,92,255,.18)', bottom: -60, left: -60, animationDelay: '-9s' }} />
 
       {/* Grid pattern overlay */}
       <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px)', backgroundSize: '56px 56px', pointerEvents: 'none' }} />
@@ -64,7 +65,7 @@ export default function Hero() {
               Partner in the USA
             </h1>
 
-            <p data-reveal style={{ opacity: 0, fontSize: 17, lineHeight: 1.7, color: 'rgba(255,255,255,.7)', marginBottom: 36, animationDelay: '.2s' }}>
+            <p data-reveal style={{ opacity: 0, fontSize: 15.5, lineHeight: 1.75, color: 'rgba(255,255,255,.7)', marginBottom: 36, animationDelay: '.2s' }}>
               From manufacturing floors to professional services firms — Trilogiks delivers Odoo implementations that actually fit your business, with US-hours support and a team that speaks your language.
             </p>
 
@@ -112,7 +113,7 @@ export default function Hero() {
           </div>
 
           {/* Right — dashboard card */}
-          <div ref={cardRef} style={{ transition: 'transform .2s ease' }}>
+          <div ref={cardRef} style={{ transition: 'transform .2s ease', position: 'relative' }}>
             <div style={{
               borderRadius: 24, overflow: 'hidden',
               background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.12)',
@@ -155,8 +156,8 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating pills */}
-            <div style={{ position: 'absolute', top: -18, right: -18, animation: 'ksFloat 6s ease-in-out infinite' }}>
+            {/* Floating pill */}
+            <div style={{ position: 'absolute', top: -14, right: 0, animation: 'ksFloat 6s ease-in-out infinite', zIndex: 3 }}>
               <div style={{ background: '#fff', borderRadius: 12, padding: '10px 16px', boxShadow: '0 20px 40px -10px rgba(10,108,255,.4)', display: 'flex', alignItems: 'center', gap: 10, fontSize: 13, fontWeight: 600, color: '#0a1733', whiteSpace: 'nowrap' }}>
                 <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#22c55e', animation: 'ksDot 1.4s infinite', display: 'inline-block' }} />
                 Go-live achieved on time

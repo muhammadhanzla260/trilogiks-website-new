@@ -15,9 +15,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   margin: 0;
+  overflow-x: hidden;
   background: #ffffff;
   font-family: 'Axiforma', -apple-system, sans-serif;
   color: #0a1733;
@@ -68,9 +69,9 @@ button { font-family: inherit; cursor: pointer; }
 .revealed { animation: ksReveal .8s cubic-bezier(.16,.8,.3,1) forwards; }
 
 /* ── Layout ── */
-.ks-container { max-width: 1260px; margin: 0 auto; padding: 0 24px; }
-.ks-section   { padding: 108px 0; }
-.ks-section-sm{ padding: 72px 0; }
+.ks-container { max-width: 1260px; margin: 0 auto; padding: 0 24px; width: 100%; }
+.ks-section   { padding: 44px 0; }
+.ks-section-sm{ padding: 28px 0; }
 
 /* ── Grid helpers ── */
 .ks-grid-2  { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
@@ -125,8 +126,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ── Heading ── */
-.ks-h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(38px,5.1vw,66px); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 22px; }
-.ks-h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(30px,3.8vw,46px); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 16px; color: #0a1733; }
+.ks-h1 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(28px,5.1vw,66px); line-height: 1.08; letter-spacing: -.02em; margin: 0 0 22px; overflow-wrap: break-word; }
+.ks-h2 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: clamp(24px,3.8vw,46px); line-height: 1.1; letter-spacing: -.02em; margin: 0 0 16px; color: #0a1733; overflow-wrap: break-word; }
 .ks-h3 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 18px; margin: 0 0 9px; }
 
 /* ── Buttons ── */
@@ -206,14 +207,23 @@ button { font-family: inherit; cursor: pointer; }
   .ks-footer-grid  { grid-template-columns: repeat(2,1fr) !important; }
   .ks-nav-links, .ks-nav-cta { display: none !important; }
   .ks-burger { display: inline-flex !important; }
-  .ks-section { padding: 80px 0; }
+  .ks-section { padding: 32px 0; }
 }
 @media (max-width: 640px) {
   .ks-grid-3 { grid-template-columns: 1fr !important; }
   .ks-grid-4 { grid-template-columns: 1fr !important; }
   .ks-footer-grid { grid-template-columns: 1fr !important; }
   .ks-2to1  { grid-template-columns: 1fr !important; }
-  .ks-section { padding: 72px 0; }
-  .ks-hero-sec { padding-top: 122px !important; padding-bottom: 72px !important; }
-  .ks-cta-pad { padding: 46px 26px !important; }
+  .ks-section { padding: 26px 0; }
+  .ks-hero-sec { padding-top: 90px !important; padding-bottom: 40px !important; }
+  .ks-cta-pad { padding: 40px 20px !important; }
+  .ks-container { padding: 0 24px !important; }
+  p { font-size: 14.5px !important; line-height: 1.75; overflow-wrap: break-word; }
+  li { overflow-wrap: break-word; }
+  .ks-btn-primary, .ks-btn-ghost, .ks-btn-white { font-size: 14px !important; padding: 14px 20px !important; }
 }
+
+/* ── Global overflow guard ── */
+section, footer, header, div { max-width: 100%; }
+img { max-width: 100%; height: auto; }
+pre, code { overflow-x: auto; }

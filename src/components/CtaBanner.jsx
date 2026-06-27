@@ -5,7 +5,7 @@ export default function CtaBanner() {
         <div className="ks-cta-pad" style={{
           borderRadius: 28, padding: '72px 56px', textAlign: 'center',
           background: 'linear-gradient(140deg,#030c1f 0%,#0a2a70 50%,#0a52e0 100%)',
-          position: 'relative', overflow: 'hidden',
+          position: 'relative', overflow: 'hidden', clipPath: 'inset(0 round 28px)',
         }}>
           <div className="ks-aurora" style={{ background: 'radial-gradient(ellipse at 60% 40%, rgba(124,92,255,.3) 0%, transparent 65%), radial-gradient(ellipse at 20% 70%, rgba(10,108,255,.25) 0%, transparent 60%)' }} />
           <div style={{ position: 'relative', zIndex: 2 }}>
@@ -23,8 +23,8 @@ export default function CtaBanner() {
                 Book Free Consultation
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
-              <a href="tel:+1-800-TRILOGIK" className="ks-btn-ghost" style={{ fontSize: 16, padding: '18px 28px' }}>
-                📞 Call Us Now
+              <a href="tel:+13862057927" className="ks-btn-ghost" style={{ fontSize: 16, padding: '18px 28px' }}>
+                📞 +1 (386) 205-7927
               </a>
             </div>
             <p data-reveal style={{ opacity: 0, marginTop: 28, fontSize: 13, color: 'rgba(255,255,255,.45)' }}>

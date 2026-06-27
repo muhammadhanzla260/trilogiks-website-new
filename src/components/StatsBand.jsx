@@ -7,7 +7,7 @@ const STATS = [
 
 export default function StatsBand() {
   return (
-    <section className="ks-section-sm" style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(135deg,#0a1f4a 0%,#0a52e0 100%)' }}>
+    <section className="ks-section-sm" style={{ position: 'relative', overflow: 'hidden', clipPath: 'inset(0)', background: 'linear-gradient(135deg,#0a1f4a 0%,#0a52e0 100%)' }}>
       <div className="ks-aurora" style={{ background: 'radial-gradient(ellipse at 50% 50%, rgba(124,92,255,.3) 0%, transparent 70%)' }} />
 
       <div className="ks-container" style={{ position: 'relative', zIndex: 2 }}>

@@ -55,7 +55,7 @@ export default function ServicesExplorer() {
           </p>
         </div>
 
-        <div className="ks-svc-grid" style={{ display: 'grid', gridTemplateColumns: '280px 1fr', gap: 24, alignItems: 'start' }}>
+        <div className="ks-svc-grid" style={{ display: 'grid', gridTemplateColumns: 'minmax(0,280px) 1fr', gap: 24, alignItems: 'start' }}>
           {/* Sidebar tabs */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {SERVICES.map((s, i) => (

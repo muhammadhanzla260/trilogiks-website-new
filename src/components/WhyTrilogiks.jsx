@@ -9,7 +9,7 @@ const REASONS = [
 
 export default function WhyTrilogiks() {
   return (
-    <section id="why" className="ks-section" style={{ position: 'relative', overflow: 'hidden', background: 'linear-gradient(145deg,#030c1f 0%,#061538 55%,#0a1f4a 100%)' }}>
+    <section id="why" className="ks-section" style={{ position: 'relative', overflow: 'hidden', clipPath: 'inset(0)', background: 'linear-gradient(145deg,#030c1f 0%,#061538 55%,#0a1f4a 100%)' }}>
       {/* Aurora */}
       <div className="ks-aurora" style={{ background: 'radial-gradient(ellipse at 70% 40%, rgba(124,92,255,.22) 0%, transparent 65%), radial-gradient(ellipse at 20% 70%, rgba(10,108,255,.18) 0%, transparent 60%)' }} />
 
